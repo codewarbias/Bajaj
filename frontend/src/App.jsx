@@ -11,7 +11,6 @@ export default function App() {
   const [error, setError] = useState(""); // Error handling
   const [selectedFilters, setSelectedFilters] = useState([]); 
 
-  
   const filterOptions = [
     { value: "Alphabets", label: "Alphabets" },
     { value: "Numbers", label: "Numbers" },
@@ -30,7 +29,8 @@ export default function App() {
         throw new Error("Invalid JSON format. Must contain a 'data' array.");
       }
 
-      const response = await axios.post("http://localhost:5000/process", parsedInput, {
+      // 🔹 Updated Backend Endpoint
+      const response = await axios.post("https://bajaj-flax.vercel.app/process", parsedInput, {
         headers: { "Content-Type": "application/json" },
       });
 
@@ -47,7 +47,6 @@ export default function App() {
     <div className="container mt-5">
       <JsonInput value={jsonInput} onChange={handleJsonChange} onSubmit={handleSubmit} error={error} />
 
-      
       {responseData && (
         <div className="mb-3">
           <label className="form-label fw-bold">Multi Filter</label>
